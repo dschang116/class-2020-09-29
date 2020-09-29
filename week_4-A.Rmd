@@ -70,11 +70,20 @@ Arrg! Depending in how you wrote `read_enrollment()`, you will probably be getti
 
 **Prompt:** Combine the five tibbles which you have into a single tibble which can then be used for analysis and graphics. There are many ways to do this, but we recommend `bind_rows()`. Hint: make use of the `.id` argument, which may be aided by placing the tibbles in a list.
 
+```{r}
+d_total <- bind_rows(d_2019, d_2018, d_2017, d_2016, d_2015, .id = "year")
+```
 
 
 ### Scene 5
 
 **Prompt:** Make an interesting plot with this data. Take that plot and publish it on Rpubs. Add a link to the Rpubs in the #general Slack channel.
 
+```{r echo = FALSE}
+d_total %>%
+  ggplot(aes(x = department, y = u_grad, fill = year)) +
+    geom_col(position = "dodge") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
 
 
